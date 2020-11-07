@@ -11,8 +11,8 @@
 <body>
   <!-- <h2 style="color: #fff;">Sign in to Order Now!</h2> -->
 <div class="container" id="container">
-	<div class="form-container sign-up-container">
-		<form action="#">
+	<div class="form-container sign-up-container"></div>
+		<form action="#" onsubmit="return validation()">
 			<h1>Create Account</h1>
 			<div class="social-container">
 				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
@@ -20,10 +20,16 @@
 				<a href="#" class="social"><i class="fab fa-instagram"></i></a>
 			</div>
 			<span>or use your email for registration</span>
-			<input type="text" placeholder="Name" />
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
-			<button>Sign Up</button>
+			<input type="text" name = "name"  id="name" placeholder="Name" autocomplete="off"/>
+			<span id="validName" class="warning"></span>
+
+			<input type="text" name="email" id="email" placeholder="Email" autocomplete="off"/>
+			<span id="validEmail" class="warning"></span>
+
+			<input type="password" name="password" id="password" placeholder="Password" autocomplete="off"/>
+			<span id="validPassword" class="warning"></span>
+
+			<input type ="submit" name="submit" value="Sign Up" class="submit" />
 		</form>
 	</div>
 	<div class="form-container sign-in-container">
@@ -35,10 +41,10 @@
 				<a href="#" class="social"><i class="fab fa-instagram"></i></a>
 			</div>
 			<span>or use your account</span>
-			<input type="email" placeholder="Email" />
-			<input type="password" placeholder="Password" />
+			<input type="email" placeholder="Email" autocomplete="off"/>
+			<input type="password" placeholder="Password" autocomplete="off"/>
 			<a href="#">Forgot your password?</a>
-			<button>Sign In</button>
+			<input type ="submit" name="submit" value="Sign In" class="submit"/>
 		</form>
 	</div>
 	<div class="overlay-container">
@@ -56,7 +62,6 @@
 		</div>
 	</div>
 </div>
-
 
 <script src="js/login.js"></script>
 </body>
