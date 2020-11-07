@@ -13,7 +13,29 @@
   </head>
 <body>
   <header>
-    <nav id="header-nav" class="navbar navbar-default">
+    <nav id="header-nav">
+      <div class="logo">
+        <a href="index.html">
+          <h4>Food ordering</h4>
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li id="navHomeButton" ><a href="index.html">Home</a></li>
+        <li id="navMenuButton">
+          <a href="#" onclick="$dc.loadMenuCategories();"> Menu</a>
+        </li>
+          <li ><a href="">About</a></li>
+          <li><a href="">Contact</a></li>
+          <li><a href="cart.html">My Cart</a></li>
+          <li><a href="login.html">Login</a></li>
+      </ul>
+      <div class="burger">
+          <div class="line1"></div>
+          <div class="line2"></div>
+          <div class="line3"></div>
+      </div>
+  </nav>
+    <!-- <nav id="header-nav" class="navbar navbar-default">
       <div class="container">
         <div class="navbar-header">
           <a href="index.html" class="pull-left visible-md visible-lg">
@@ -22,10 +44,7 @@
 
           <div class="navbar-brand">
             <a href="index.html"><h1>Food Ordering</h1></a>
-            <!-- <p>
-              <img src="images/star-k-logo.png" alt="Kosher certification">
-              <span>Kosher Certified</span>
-            </p> -->
+           
           </div>
 
           <button id="navbarToggle" type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsable-nav" aria-expanded="false">
@@ -59,10 +78,10 @@
               <a href="tel:410-602-5008">
                 <span>1234567890</span></a><div>* We Deliver</div>
             </li>
-          </ul><!-- #nav-list -->
-        </div><!-- .collapse .navbar-collapse -->
-      </div><!-- .container -->
-    </nav><!-- #header-nav -->
+          </ul>
+        </div>
+      </div>
+    </nav> -->
   </header>
 
   <div id="call-btn" class="visible-xs">
@@ -83,7 +102,16 @@
           Sun-Thurs: 11:15am - 10:00pm<br>
           Fri: 11:15am - 2:30pm<br>
           Saturday Closed
+          <br>
           <hr class="visible-xs">
+          <span>Feel free to contact us</span>
+          <br>
+          <span id="phone" class="hidden-xs">
+            <a href="tel:410-602-5008">
+              <span style="color: #FF416C;
+              text-align: center;
+              text-decoration: none;">1234567890</span></a>
+            </span>
         </section>
         <section id="address" class="col-sm-4">
           <span>Address:</span><br>
