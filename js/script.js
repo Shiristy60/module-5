@@ -1,33 +1,3 @@
-//navbar
-const navSlide = () =>{
-  const burger = document.querySelector('.burger');
-  const nav = document.querySelector('.nav-links');
-  const navLinks = document.querySelectorAll('.nav-links li');
-  //toggle navs
-  burger.addEventListener ('click',()=>{
-          //Animate links
-
-      nav.classList.toggle('nav-active');
-
-      navLinks.forEach((link,index) => {
-          // console.log(index)
-          if(link.style.animation){
-              link.style.animation = '';
-  
-          }else{
-              link.style.animation = `navLinkFade 0.5s ease forwards ${index/7 + 0.5}s`;
-          }
-      });
-  })
-  //burger animation
-
-  burger.classList.toggle('toggle');
-  
-}
-
-navSlide();
-
-
 $(function () { // Same as document.addEventListener("DOMContentLoaded"...
 
   // Same as document.querySelector("#navbarToggle").addEventListener("blur",...
@@ -38,11 +8,8 @@ $(function () { // Same as document.addEventListener("DOMContentLoaded"...
     }
   });
 });
-
 (function (global) {
-
 var dc = {};
-
 var homeHtmlUrl = "snippets/home-snippet.html";
 var allCategoriesUrl = 
   "https://davids-restaurant.herokuapp.com/categories.json";
@@ -52,20 +19,17 @@ var menuItemsUrl =
   "https://davids-restaurant.herokuapp.com/menu_items.json?category=";
 var menuItemsTitleHtml = "snippets/menu-items-title.html";
 var menuItemHtml = "snippets/menu-item.html";
-
 // Convenience function for inserting innerHTML for 'select'
 var insertHtml = function (selector, html) {
   var targetElem = document.querySelector(selector);
   targetElem.innerHTML = html;
 };
-
 // Show loading icon inside element identified by 'selector'.
 var showLoading = function (selector) {
   var html = "<div class='text-center'>";
   html += "<img src='images/ajax-loader.gif'></div>";
   insertHtml(selector, html);
 };
-
 // Return substitute of '{{propName}}' 
 // with propValue in given 'string' 
 var insertProperty = function (string, propName, propValue) {
@@ -74,14 +38,12 @@ var insertProperty = function (string, propName, propValue) {
     .replace(new RegExp(propToReplace, "g"), propValue);
   return string;
 }
-
 // Remove the class 'active' from home and switch to Menu button
 var switchMenuToActive = function () {
   // Remove 'active' from home button
   var classes = document.querySelector("#navHomeButton").className;
   classes = classes.replace(new RegExp("active", "g"), "");
   document.querySelector("#navHomeButton").className = classes;
-
   // Add 'active' to menu button if not already there
   classes = document.querySelector("#navMenuButton").className;
   if (classes.indexOf("active") == -1) {
@@ -89,7 +51,6 @@ var switchMenuToActive = function () {
     document.querySelector("#navMenuButton").className = classes;
   }
 };
-
 // On page load (before images or CSS)
 document.addEventListener("DOMContentLoaded", function (event) {
   
@@ -107,7 +68,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
 //
 // TODO: STEP 1: Substitute [...] below with the *value* of the function buildAndShowHomeHTML, 
 // so it can be called when server responds with the categories data.
-
 // *** start ***
 // On first load, show home view
 showLoading("#main-content");
@@ -117,8 +77,6 @@ $ajaxUtils.sendGetRequest(
   true); // Explicitely setting the flag to get JSON from server processed into an object literal
 });
 // *** finish **
-
-
 // Builds HTML for the home page based on categories array
 // returned from the server.
 function buildAndShowHomeHTML (categories) {
@@ -127,13 +85,11 @@ function buildAndShowHomeHTML (categories) {
   $ajaxUtils.sendGetRequest(
     homeHtmlUrl,
     function (homeHtml) {
-
       // TODO: STEP 2: Here, call chooseRandomCategory, passing it retrieved 'categories'
       // Pay attention to what type of data that function returns vs what the chosenCategoryShortName
       // variable's name implies it expects.
       
       var chosenCategoryShortName = chooseRandomCategory(categories).short_name;      
-
       // TODO: STEP 3: Substitute {{randomCategoryShortName}} in the home html snippet with the
       // chosen category from STEP 2. Use existing insertProperty function for that purpose.
       // Look through this code for an example of how to do use the insertProperty function.
@@ -145,32 +101,24 @@ function buildAndShowHomeHTML (categories) {
       // Hint: you need to surround the chosen category short name with something before inserting
       // it into the home html snippet.
       //
-
       chosenCategoryShortName = "'" + chosenCategoryShortName + "'";
       var homeHtmlToInsertIntoMainPage = insertProperty(homeHtml, "randomCategoryShortName", chosenCategoryShortName);
       
-
       // TODO: STEP 4: Insert the the produced HTML in STEP 3 into the main page
       // Use the existing insertHtml function for that purpose. Look through this code for an example
       // of how to do that. 
       // ....
-
       insertHtml("#main-content", homeHtmlToInsertIntoMainPage);      
     },
     false); // False here because we are getting just regular HTML from the server, so no need to process JSON.
 }
-
-
 // Given array of category objects, returns a random category object.
 function chooseRandomCategory (categories) {
   // Choose a random index into the array (from 0 inclusively until array length (exclusively))
   var randomArrayIndex = Math.floor(Math.random() * categories.length);
-
   // return category object with that randomArrayIndex
   return categories[randomArrayIndex];
 }
-
-
 // Load the menu categories view
 dc.loadMenuCategories = function () {
   showLoading("#main-content");
@@ -178,8 +126,6 @@ dc.loadMenuCategories = function () {
     allCategoriesUrl,
     buildAndShowCategoriesHTML);
 };
-
-
 // Load the menu items view
 // 'categoryShort' is a short_name for a category
 dc.loadMenuItems = function (categoryShort) {
@@ -188,8 +134,6 @@ dc.loadMenuItems = function (categoryShort) {
     menuItemsUrl + categoryShort,
     buildAndShowMenuItemsHTML);
 };
-
-
 // Builds HTML for the categories page based on the data
 // from the server
 function buildAndShowCategoriesHTML (categories) {
@@ -203,7 +147,6 @@ function buildAndShowCategoriesHTML (categories) {
         function (categoryHtml) {
           // Switch CSS class active to menu button
           switchMenuToActive();
-
           var categoriesViewHtml = 
             buildCategoriesViewHtml(categories, 
                                     categoriesTitleHtml,
@@ -214,8 +157,6 @@ function buildAndShowCategoriesHTML (categories) {
     },
     false);
 }
-
-
 // Using categories data and snippets html
 // build categories view HTML to be inserted into page
 function buildCategoriesViewHtml(categories, 
@@ -224,7 +165,6 @@ function buildCategoriesViewHtml(categories,
   
   var finalHtml = categoriesTitleHtml;
   finalHtml += "<section class='row'>";
-
   // Loop over categories
   for (var i = 0; i < categories.length; i++) {
     // Insert category values
@@ -239,13 +179,9 @@ function buildCategoriesViewHtml(categories,
                      short_name);
     finalHtml += html;
   }
-
   finalHtml += "</section>";
   return finalHtml;
 }
-
-
-
 // Builds HTML for the single category page based on the data
 // from the server
 function buildAndShowMenuItemsHTML (categoryMenuItems) {
@@ -270,8 +206,6 @@ function buildAndShowMenuItemsHTML (categoryMenuItems) {
     },
     false);
 }
-
-
 // Using category and menu items data and snippets html
 // build menu items view HTML to be inserted into page
 function buildMenuItemsViewHtml(categoryMenuItems, 
@@ -286,10 +220,8 @@ function buildMenuItemsViewHtml(categoryMenuItems,
     insertProperty(menuItemsTitleHtml,
                    "special_instructions",
                    categoryMenuItems.category.special_instructions);
-
   var finalHtml = menuItemsTitleHtml;
   finalHtml += "<section class='row'>";
-
   // Loop over menu items
   var menuItems = categoryMenuItems.menu_items;
   var catShortName = categoryMenuItems.category.short_name;
@@ -326,21 +258,16 @@ function buildMenuItemsViewHtml(categoryMenuItems,
       insertProperty(html, 
                      "description",
                      menuItems[i].description);
-
     // Add clearfix after every second menu item
     if (i % 2 != 0) {
       html += 
         "<div class='clearfix visible-lg-block visible-md-block'></div>";
     }
-
     finalHtml += html;
   }
-
   finalHtml += "</section>";
   return finalHtml;
 }
-
-
 // Appends price with '$' if price exists
 function insertItemPrice(html,
                          pricePropName,
@@ -349,13 +276,10 @@ function insertItemPrice(html,
   if (!priceValue) {
     return insertProperty(html, pricePropName, "");;
   }
-
   priceValue = "Rs" + priceValue.toFixed(2);
   html = insertProperty(html, pricePropName, priceValue);
   return html;
 }
-
-
 // Appends portion name in parens if it exists
 function insertItemPortionName(html,
                                portionPropName,
@@ -364,14 +288,9 @@ function insertItemPortionName(html,
   if (!portionValue) {
     return insertProperty(html, portionPropName, "");
   }
-
   portionValue = "(" + portionValue + ")";
   html = insertProperty(html, portionPropName, portionValue);
   return html;
 }
-
-
 global.$dc = dc;
-
 })(window);
-
